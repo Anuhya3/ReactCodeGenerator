@@ -17,6 +17,7 @@ import { onJobUpdate } from "./services/jobStore.js";
 dotenv.config();
 
 const PORT = Number(process.env.PORT || 4000);
+const HOST = process.env.HOST || "127.0.0.1";
 const ORIGIN = process.env.CORS_ORIGIN || "http://localhost:3000,http://localhost:3001";
 const allowedOrigins = ORIGIN.split(",")
   .map((value) => value.trim())
@@ -64,7 +65,7 @@ onJobUpdate((job) => {
   }
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, HOST, () => {
   // eslint-disable-next-line no-console
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on http://${HOST}:${PORT}`);
 });
